@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TailorLink - Find Your Perfect Tailor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="TailorLink Logo" />
+      <h2>TailorLink</h2>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Bookings</a></li>
+      <li><a href="#">Reviews</a></li>
+      <li><a href="#">Help</a></li>
+    </ul>
+
+    <div class="profile">
+      <img src="images/profile.jpg" alt="Profile" />
+      <button id="hamburger" class="hamburger">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Find Your Perfect Tailor</h1>
+    <p>Connect with experienced tailors in your area for custom garments, alterations, and repairs</p>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search by name, specialty or location..." />
+      <button><i>🔍</i></button>
+    </div>
+
+    <div class="filters">
+          <!-- Filter Section -->
+    <div class="filters">
+      <select>
+        <option value="">Location</option>
+        <option value="abia">Abia</option>
+        <option value="adamawa">Adamawa</option>
+        <option value="akwa-ibom">Akwa Ibom</option>
+        <option value="anambra">Anambra</option>
+        <option value="bauchi">Bauchi</option>
+        <option value="bayelsa">Bayelsa</option>
+        <option value="benue">Benue</option>
+        <option value="borno">Borno</option>
+        <option value="cross-river">Cross River</option>
+        <option value="delta">Delta</option>
+        <option value="ebonyi">Ebonyi</option>
+        <option value="edo">Edo</option>
+        <option value="ekiti">Ekiti</option>
+        <option value="enugu">Enugu</option>
+        <option value="fct">Federal Capital Territory</option>
+        <option value="gombe">Gombe</option>
+        <option value="imo">Imo</option>
+        <option value="jigawa">Jigawa</option>
+        <option value="kaduna">Kaduna</option>
+        <option value="kano">Kano</option>
+        <option value="katsina">Katsina</option>
+        <option value="kebbi">Kebbi</option>
+        <option value="kogi">Kogi</option>
+        <option value="kwara">Kwara</option>
+        <option value="lagos">Lagos</option>
+        <option value="nasarawa">Nasarawa</option>
+        <option value="niger">Niger</option>
+        <option value="ogun">Ogun</option>
+        <option value="ondo">Ondo</option>
+        <option value="osun">Osun</option>
+        <option value="oyo">Oyo</option>
+        <option value="plateau">Plateau</option>
+        <option value="rivers">Rivers</option>
+        <option value="sokoto">Sokoto</option>
+        <option value="taraba">Taraba</option>
+        <option value="yobe">Yobe</option>
+        <option value="zamfara">Zamfara</option>
+      </select>
+        <select>
+        <option value="">Price Range</option>
+        <option value="10000-50000">₦10,000 - ₦50,000</option>
+        <option value="50001-100000">₦50,001 - ₦100,000</option>
+        <option value="100001-200000">₦100,001 - ₦200,000</option>
+        <option value="200001-300000">₦200,001 - ₦300,000</option>
+        <option value="300001-400000">₦300,001 - ₦400,000</option>
+        <option value="400001-500000">₦400,001 - ₦500,000</option>
+        <option value="500000-plus">Above ₦500,000</option>
+      </select>
+      <select>
+        <option>Type</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+      <select>
+        <option>Specialty</option>
+        <option>Wedding Gowns</option>
+        <option>Native Wear</option>
+        <option>Corporate</option>
+      </select>
+      <button class="clear-btn">Clear all filters</button>
+    </div>
+  </section>
+
+  <!-- Tailors Section -->
+  <section class="tailors">
+    <h2>Showing 3 Tailors</h2>
+    <div class="card-container">
+      <div class="card">
+        <img src="images/tailor1.jpg" alt="Tailor 1" />
+        <h3>Maria Rodriguez</h3>
+        <p>Specialty: Wedding Gowns</p>
+        <a href="portfolio.html" class="portfolio-btn">View Portfolio</a>
+      </div>
+
+      <div class="card">
+        <img src="images/tailor2.jpg" alt="Tailor 2" />
+        <h3>David Johnson</h3>
+        <p>Specialty: Male Suits</p>
+        <a href="portfolio.html" class="portfolio-btn">View Portfolio</a>
+      </div>
+
+      <div class="card">
+        <img src="images/tailor3.jpg" alt="Tailor 3" />
+        <h3>Chinwe Okafor</h3>
+        <p>Specialty: Traditional Wear</p>
+        <a href="portfolio.html" class="portfolio-btn">View Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

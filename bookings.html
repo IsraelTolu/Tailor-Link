@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=620, initial-scale=1">
+    <title>Bookings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Enhanced styles with smooth transitions */
+        html, body {
+            margin: 0; padding: 0; background: #f5f5f5; height: 100%;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(to bottom, #fdfbfb, #f0ede8);
+            display: flex; justify-content: center; align-items: flex-start;
+            padding: 40px 20px; min-height: 100vh;
+        }
+        .container {
+            width: 480px !important; max-width: 480px !important;
+            background: #fff; border-radius: 28px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12); overflow: hidden;
+            border: 1px solid #e8d9c2;
+        }
+        .header {
+            background: #fff; padding: 20px 28px; display: flex;
+            align-items: center; justify-content: center; position: relative;
+            border-bottom: 1px solid #eee;
+        }
+        .header::before {
+            content: ''; position: absolute; top: 12px; left: 50%;
+            transform: translateX(-50%); width: 40px; height: 4px;
+            background: #ccc; border-radius: 2px;
+        }
+        .title { font-weight: 700; font-size: 20px; color: #333; }
+
+        .subheader {
+            background: #f8f9fa; padding: 16px 28px; font-size: 15px;
+            color: #555; border-bottom: 1px solid #eee;
+        }
+
+        /* Search bar */
+        .search-bar {
+            padding: 12px 20px; background: #fff; border-bottom: 1px solid #eee;
+        }
+        .search-input {
+            width: 85%; padding: 14px 20px 14px 40px;
+            border: 2px solid #eee; border-radius: 25px;
+            font-size: 15px; outline: none;
+            background: #f9f9f9 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>') no-repeat 12px center;
+            transition: all 0.3s;
+        }
+        .search-input:focus {
+            border-color: #d4a574; box-shadow: 0 0 0 4px rgba(212,165,116,0.2);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex; background: #fff; border-bottom: 1px solid #eee;
+        }
+        .tab {
+            flex: 1; padding: 16px; text-align: center; font-size: 14px;
+            color: #888; cursor: pointer; position: relative; transition: color 0.3s;
+        }
+        .tab.active {
+            color: #b8860b; font-weight: 600;
+        }
+        .tab.active::after {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 60px; height: 3px;
+            background: #b8860b; border-radius: 2px; animation: slideIn 0.4s ease;
+        }
+        @keyframes slideIn { from { width: 0; } to { width: 60px; } }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed; left: 20px; top: 50%; transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 24px; z-index: 10;
+        }
+        .sidebar-item {
+            width: 48px; height: 48px; background: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); color: #888; font-size: 20px;
+            cursor: pointer; transition: all 0.3s;
+        }
+        .sidebar-item:hover { transform: scale(1.15) rotate(5deg); }
+        .sidebar-item.active { background: #b8860b; color: #fff; transform: scale(1.2); }
+        .sidebar-item:last-child {
+            background: #d4a574; color: #fff; font-weight: bold; font-size: 18px;
+        }
+
+        /* Booking list */
+        .booking-list { padding: 20px 28px 40px; }
+        .booking-item {
+            background: #fff; border: 2px solid #f0e6d9; border-radius: 20px;
+            padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex; align-items: center; justify-content: space-between;
+            transition: all 0.3s; cursor: pointer; opacity: 0; transform: translateY(20px);
+        }
+        .booking-item.visible {
+            opacity: 1; transform: translateY(0);
+        }
+        .booking-item:hover {
+            transform: translateY(-6px) scale(1.02); box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .booking-left { display: flex; align-items: center; gap: 16px; }
+        .avatar {
+            width: 56px; height: 56px; border-radius: 50%; background: #eee;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 20px; color: #fff; flex-shrink: 0;
+        }
+        .avatar.ca { background: linear-gradient(135deg, #ff9a56, #ff6b6b); }
+        .avatar.aa { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .avatar.fo { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+        .avatar.en { background: linear-gradient(135deg, #f093fb, #f5576c); }
+
+        .booking-info h3 {
+            font-size: 16px; font-weight: 600; color: #333; margin-bottom: 4px;
+        }
+        .booking-info p { font-size: 13px; color: #777; margin-bottom: 8px; }
+        .status-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag {
+            padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .tag:hover { transform: scale(1.1); }
+        .tag.progress { background: #e3f2fd; color: #1976d2; }
+        .tag.cancelled { background: #fce4ec; color: #c2185b; }
+        .tag.delivered { background: #e8f5e9; color: #388e3c; }
+        .tag.rejected { background: #fff3e0; color: #f57c00; }
+        .tag.pending { background: #fff8e1; color: #f9a825; }
+
+        .due { font-size: 12px; color: #999; margin-top: 4px; transition: color 0.3s; }
+        .due.overdue { color: #d32f2f !important; font-weight: bold; }
+
+        .view-details {
+            padding: 10px 20px; background: #fff; border: 2px solid #d4a574;
+            color: #b8860b; font-weight: 600; font-size: 13px; border-radius: 25px;
+            cursor: pointer; transition: all 0.3s;
+        }
+        .view-details:hover {
+            background: #d4a574; color: #fff; transform: scale(1.08);
+        }
+
+        .no-results {
+            text-align: center; padding: 40px; color: #999; font-size: 16px; display: none;
+        }
+        .no-results.show { display: block; }
+
+        /* Hidden class */
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-item"><i class="fas fa-home"></i></div>
+        <div class="sidebar-item"><i class="fas fa-calendar-check"></i></div>
+        <div class="sidebar-item active"><i class="fas fa-clipboard-list"></i></div>
+        <div class="sidebar-item"><i class="fas fa-user"></i></div>
+        <div class="sidebar-item">A</div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="title">Bookings</div>
+        </div>
+
+        <!-- Subheader -->
+        <div class="subheader">
+            Manage all your tailoring orders in one place
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search by name, job or status...">
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" data-filter="all">All</div>
+            <div class="tab" data-filter="pending">Pending</div>
+            <div class="tab" data-filter="progress">In Progress</div>
+            <div class="tab" data-filter="delivered">Delivered</div>
+        </div>
+
+        <!-- Booking List -->
+        <div class="booking-list">
+            <div class="no-results">No bookings found matching your search.</div>
+
+            <!-- Booking 1 -->
+            <div class="booking-item" data-status="progress cancelled" data-search="chioma adebayo aso-oke dress">
+                <div class="booking-left">
+                    <div class="avatar ca">CA</div>
+                    <div class="booking-info">
+                        <h3>Chioma Adebayo</h3>
+                        <p>Aso-oke Dress</p>
+                        <div class="status-tags">
+                            <span class="tag progress">In Progress</span>
+                            <span class="tag cancelled">Cancelled</span>
+                        </div>
+                        <div class="due">Due 10 Nov</div>
+                    </div>
+                </div>
+                <div class="view-details">View Details</div>
+            </div>
+
+            <!-- Booking 2 -->
+            <div class="booking-item" data-status="progress cancelled" data-search="adebayo adewale agbada set">
+                <div class="booking-left">
+                    <div class="avatar aa">AA</div>
+                    <div class="booking-info">
+                        <h3>Adebayo Adewale</h3>
+                        <p>Agbada Set</p>
+                        <div class="status-tags">
+                            <span class="tag progress">In Progress</span>
+                            <span class="tag cancelled">Cancelled</span>
+                        </div>
+                        <div class="due">Due 15 Nov</div>
+                    </div>
+                </div>
+                <div class="view-details">View Details</div>
+            </div>
+
+            <!-- Booking 3 -->
+            <div class="booking-item" data-status="delivered rejected" data-search="fatima okonkwo corporate suit">
+                <div class="booking-left">
+                    <div class="avatar fo">FO</div>
+                    <div class="booking-info">
+                        <h3>Fatima Okonkwo</h3>
+                        <p>Corporate.cwd Corporate Suit</p>
+                        <div class="status-tags">
+                            <span class="tag delivered">Delivered</span>
+                            <span class="tag rejected">Released</span>
+                        </div>
+                        <div class="due">Due 25 Oct</div>
+                    </div>
+                </div>
+                <div class="view-details">View Details</div>
+            </div>
+
+            <!-- Booking 4 -->
+            <div class="booking-item" data-status="rejected pending" data-search="emeka nwosu traditional wrapper">
+                <div class="booking-left">
+                    <div class="avatar en">EN</div>
+                    <div class="booking-info">
+                        <h3>Emeka Nwosu</h3>
+                        <p>Traditional Wrapper</p>
+                        <div class="status-tags">
+                            <span class="tag rejected">Rejected</span>
+                            <span class="tag pending">Pending</span>
+                        </div>
+                        <div class="due">Due 18 Nov</div>
+                    </div>
+                </div>
+                <div class="view-details">View Details</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Current date: November 09, 2025
+        const today = new Date('2025-11-09');
+        const monthMap = { Jan:0, Feb:1, Mar:2, Apr:3, May:4, Jun:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11 };
+
+        // Mark overdue
+        document.querySelectorAll('.due').forEach(dueEl => {
+            const dueText = dueEl.textContent.replace('Due ', '').trim();
+            const [day, month] = dueText.split(' ');
+            const dueDate = new Date(2025, monthMap[month], parseInt(day));
+            if (dueDate < today) {
+                dueEl.classList.add('overdue');
+                dueEl.innerHTML += ' (Overdue!)';
+            }
+        });
+
+        // Animate items on load
+        const items = document.querySelectorAll('.booking-item');
+        items.forEach((item, index) => {
+            setTimeout(() => item.classList.add('visible'), 100 + index * 150);
+        });
+
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                filterBookings();
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', () => {
+            filterBookings();
+        });
+
+        // Combined filter + search
+        function filterBookings() {
+            const activeTab = document.querySelector('.tab.active').getAttribute('data-filter');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const status = item.getAttribute('data-status');
+                const searchData = item.getAttribute('data-search');
+                const matchesTab = (activeTab === 'all') || status.includes(activeTab);
+                const matchesSearch = searchData.includes(searchTerm);
+
+                if (matchesTab && matchesSearch) {
+                    item.classList.remove('hidden');
+                    item.classList.add('visible');
+                    visibleCount++;
+                } else {
+                    item.classList.add('hidden');
+                    item.classList.remove('visible');
+                }
+            });
+
+            document.querySelector('.no-results').classList.toggle('show', visibleCount === 0);
+        }
+
+        // View Details
+        document.querySelectorAll('.view-details').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const name = btn.closest('.booking-item').querySelector('h3').textContent;
+                const job = btn.closest('.booking-item').querySelector('p').textContent;
+                const status = [...btn.closest('.booking-item').querySelectorAll('.tag')].map(t => t.textContent).join(', ');
+                
+                alert(`📋 Booking Details\n\n👤 Customer: ${name}\n👗 Job: ${job}\n📊 Status: ${status}\n\nRedirecting to full details page...`);
+                // window.location.href = `payment.html?name=${encodeURIComponent(name)}`;
+            });
+        });
+
+        // Card click
+        document.querySelectorAll('.booking-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.querySelector('.view-details').click();
+            });
+        });
+
+        // Sidebar hover sounds (fun!)
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3');
+                audio.volume = 0.2;
+                audio.play().catch(() => {});
+            });
+        });
+
+        // Initial filter
+        filterBookings();
+    </script>
+</body>
+</html>
