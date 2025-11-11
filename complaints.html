@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Complaints</title>
+    <link rel="stylesheet" href="complaints.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link type="image/png" sizes="16x16" rel="icon" href=".../icons8-comment-forma-thin-16.png">
+    <link type="image/png" sizes="16x16" rel="icon" href=".../icons8-dashboard-m_rounded-15.png">
+   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-chubby/css/uicons-thin-chubby.css'>
+</head>
+<body>
+     <div class="logo">
+        <div id="img0"><img src="Frame 402(2).png" alt="Logo"></div>
+        <div id="Admin">ADMIN VIEW</div>
+    </div>
+
+    <div class="navbar">
+        <div id="dash"><img id=" dashb"src="https://img.icons8.com/material-rounded/21/dashboard-layout.png" alt="Dashboard Icon">Dashboard</div>
+        <div id="veri"><i id="check" class="fi fi-rs-user-check"></i>Verification</div>
+        <div id="pay"><i id="dollar" class="fi fi-rr-dollar"></i>Payments</div>
+        <div id="disp"><i id="exclamation" class="fi fi-rr-exclamation"></i>Disputes</div>
+        <div id="rev"><img id="comment" src="https://img.icons8.com/forma-thin/20/topic.png" alt="Reviews Icon">Reviews</div>
+    
+    </div>
+
+    <br>
+
+    <div class="review">
+        <h2 id="h2">Reviews & Complaints Management</h2>
+        <h4 id="h4">Monitor customer feedback and moderate content</h4>
+    </div>
+    <br>
+  <div class="tablets">
+         <div class="tablet"id="tablet1">
+           <p id="h5">Total Reviews</p>
+           <img id="img1" src="https://img.icons8.com/?size=20&id=HR0dUal4AqTf&format=png&color=228BE6" alt="Total Reviews Icon">
+           <p id="p3">8</p>
+           <p id="p2">All time feedback</p>
+         </div>
+      <div class="tablet" id="tablet2">
+         <p id="h5">Average Rating</p>
+         <img id="img2" src="https://img.icons8.com/?size=20&id=tAfqdu2AVpjT&format=png&color=ffd700" alt="Star Icon">
+         <p id="p3">4.0/5.0</p>
+         <img id="star" src="https://img.icons8.com/?size=20&id=yAV5rVkdUpMn&format=png&color=000000" alt="Star Icon">
+         <img id="star" src="https://img.icons8.com/?size=20&id=yAV5rVkdUpMn&format=png&color=000000" alt="Star Icon">
+         <img id="star" src="https://img.icons8.com/?size=20&id=yAV5rVkdUpMn&format=png&color=000000" alt="Star Icon">
+         <img id="star" src="https://img.icons8.com/?size=20&id=yAV5rVkdUpMn&format=png&color=000000" alt="Star Icon">
+         <img id="star" src=" https://img.icons8.com/?size=20&id=g0YrFYUO2fCr&format=png&color=1A1A1A" alt="Star Icon">
+      </div>
+     <div class="tablet" id="tablet3">
+         <p id="h5">Flagged Content</p>
+         <img id="img3" src="https://img.icons8.com/?size=20&id=8ktJZMCbXBSL&format=png&color=FA5252" alt="Flagged Content Icon">
+         <p id="p3">2</p>
+         <p id="p2">Requires moderation</p>
+     </div>
+     <div class="tablet" id="tablet4">
+         <p id="h5">Active Complaints</p>
+         <img id="img4" src="https://img.icons8.com/?size=20&id=ZQT2szPyP8Tw&format=png&color=FD7E14" alt="Active Complaints Icon">
+         <p id="p3">3</p>
+         <p id="p2">Pending resolution</p>
+     </div>
+ </div>
+ <div class="navibar">
+       <div class="reviews">Reviews(8)</div>
+        <div class="comp">Complaints(6)</div>
+     <div class="analytics">Analytics</div>
+ </div>
+ <div class="Complaints">
+         <div class="comp1">Customer Complaints</div>
+          <div class="track">Track and resolve customer complaints</div>
+      <div class="searches">
+          <div class="searchbar">
+              <label for="Search"><img id="img5" src="https://img.icons8.com/?size=20&id=59878&format=png&color=1A1A1A" alt="Search Icon"></label>
+              <input id="search" type="text" placeholder="Search reviews by customer, tailor or comment...">
+          </div>
+          <div class="filter1">
+                <label for="status Filter"><img id="img6" src="https://img.icons8.com/?size=20&id=Y4iiHf14d1s-&format=png&color=000000" alt="Status Filter Icon"></label>
+                <select id="status">
+                    <option>All Status</option>
+                    <option>Resolved </option>
+                    <option>Investigating</option>
+                    <option>Flagged</option>
+                    <option>Dismissed</option>
+                </select>
+          </div>     
+          <div class="filter2">
+             <label for="Priority Filter"></label>
+             <select id="priority">
+                 <option>All Priority</option>
+                 <option>Low </option>
+                 <option>Medium</option>
+                 <option>High</option>
+                
+             </select>
+          </div>    
+        </div> 
+      <div class="complainsection">
+        <table>
+            <caption>
+                <thead>
+                    <tr id="tr">
+                        <th>Complaint ID</th>
+                        <th>Customer</th>
+                        <th>Tailor</th>
+                        <th>Type</th>
+                        <th>Subject</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+           
+                <tbody>
+                    <tr id="tr">
+                        <td id="id">CMP-2045</td>
+                        <td>Karen Smith</td>
+                        <td>David Martinez</td>
+                        <td>Service Quality</td>
+                        <td>Poor quality stitchig on suit jacket</td>
+                        <td id="high">High</td>
+                        <td class="status" id="flagged">Flagged</td>
+                        <td>2025-10-28</td>
+                        <td><a href="">View details</a></td>
+                    </tr>
+                   
+                    <tr id="tr">
+                        <td id="id">CMP-2043</td>
+                        <td>John Anderson</td>
+                        <td>Lisa Anderson</td>
+                        <td>Communication</td>
+                        <td>Tailor not responding to message</td>
+                        <td id="medium">Medium</td>
+                        <td class="status" id="investigating">Investigating</td>
+                        <td>2025-10-28</td>
+                        <td><a href="">View details</a></td>
+                    </tr>
+                    <tr id="tr">
+                        <td id="id">CMP-2041</td>
+                        <td>Patricia Garcia</td>
+                        <td>Emma Williams</td>
+                        <td>Pricing</td>
+                        <td>Hidden charges added to final bill </td>
+                        <td id="high">High</td>
+                        <td class="status" id="resolved">Resolved</td>
+                        <td>2025-10-28</td>
+                        <td><a href="">View details</a></td>
+                    </tr>
+                    <tr id="tr">
+                        <td id="id">CMP-2039</td>
+                        <td>Michael Brown</td>
+                        <td>Sarah Johnson</td>
+                        <td>Missed Deadline</td>
+                        <td>Hidden charges added to final bill</td>
+                        <td id="high">High</td>
+                        <td class="status" id="resolved">Resolved</td>
+                        <td>2025-10-28</td>
+                        <td><a href="">View details</a></td>
+                    </tr>
+                    <tr id="tr">
+                        <td id="id">CMP-2037</td>
+                        <td>Susan Taylor</td>
+                        <td>Michaek Chen</td>
+                        <td>Behaviour</td>
+                        <td>Unprofessional conduct during fit</td>
+                        <td id="high">High</td>
+                        <td class="status" id="investigating">Investigating</td>
+                        <td>2025-10-28</td>
+                        <td><a href="">View details</a></td>
+                    </tr>
+                    <div class="tr">
+                    <tr id="tr">
+                        <td id="id">CMP-2035</td>
+                        <td>David Kim</td>
+                        <td>Emma Williams</td>
+                        <td>Service Quality</td>
+                        <td>Wrong measurements used</td>
+                        <td id="low">Low</td>
+                        <td class="status" id="dismissed">Dismissed</td>
+                        <td>2025-10-28</td>
+                        <td><a href="">View details</a></td>
+                    </tr>
+                    </div>
+                </tbody>
+            </caption>
+        </table>
+      </div>    
+   </div>
+</body>
+</html>
